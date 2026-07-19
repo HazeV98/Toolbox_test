@@ -1,4 +1,4 @@
-const CACHE_NAME = 'toolbox-cache-v6';
+const CACHE_NAME = 'toolbox-cache-v7';
 
 const urlsToCache = [
     './',
