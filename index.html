@@ -12,6 +12,10 @@
     <link rel="apple-touch-icon" href="assets/icon.svg">
     
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modern.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -25,7 +29,21 @@
     <!-- SCHERMATA LOGIN -->
     <div id="auth-view" class="view hidden auth-container">
         <div class="auth-box">
-            <h2>Toolbox</h2>
+            <div class="auth-brand">
+                <div class="brand-orb">
+                    <span class="material-symbols-outlined">widgets</span>
+                </div>
+                <div>
+                    <div class="eyebrow">Premium workspace</div>
+                    <h2>Toolbox</h2>
+                </div>
+            </div>
+            <p class="auth-intro">Tutti i tuoi strumenti organizzati in uno spazio moderno, veloce e curato.</p>
+            <div class="feature-pills">
+                <span class="feature-pill">Liste</span>
+                <span class="feature-pill">Password</span>
+                <span class="feature-pill">Note</span>
+            </div>
             <form id="login-form">
                 <div class="input-group" style="margin-bottom: 1rem;">
                     <span class="material-symbols-outlined input-icon">mail</span>
@@ -75,6 +93,19 @@
 
         <main id="main-content">
             <section id="view-home" class="grid-container view active">
+                <div class="home-banner">
+                    <div>
+                        <div class="eyebrow">Workspace premium</div>
+                        <h2>Organizza tutto in un unico posto</h2>
+                        <p>Un’esperienza moderna, fluida e piacevole per accedere ai tuoi strumenti più usati.</p>
+                    </div>
+                    <div class="hero-badges">
+                        <span class="chip">⚡ Veloce</span>
+                        <span class="chip">🔐 Sicuro</span>
+                        <span class="chip">📱 PWA</span>
+                    </div>
+                </div>
+
                 <div class="module-card" data-module="list">
                     <span class="material-symbols-outlined icon-large">list_alt</span>
                     <p>Liste</p>
