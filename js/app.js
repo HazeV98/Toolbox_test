@@ -191,20 +191,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    function openModal(overlay) {
+        overlay.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeModal(overlay) {
+        overlay.classList.add('hidden');
+        if (document.querySelectorAll('.modal-overlay:not(.hidden)').length === 0) {
+            document.body.classList.remove('modal-open');
+        }
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal(overlay);
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(closeModal);
+        }
+    });
+
     // --- IMPOSTAZIONI UTENTE ---
     document.getElementById('btn-settings').addEventListener('click', () => {
-        settingsOverlay.classList.remove('hidden');
+        openModal(settingsOverlay);
         document.getElementById('theme-selector').value = localStorage.getItem('theme-pref') || 'system';
         document.getElementById('pwd-msg').innerText = '';
         document.getElementById('new-password').value = '';
     });
 
     document.getElementById('btn-close-settings').addEventListener('click', () => {
-        settingsOverlay.classList.add('hidden');
+        closeModal(settingsOverlay);
     });
 
     document.getElementById('btn-logout').addEventListener('click', async () => {
-        settingsOverlay.classList.add('hidden');
+        closeModal(settingsOverlay);
         // Riattiva lo splash
         splashOverlay.style.display = 'flex';
         setTimeout(() => splashOverlay.classList.remove('hidden'), 10);
@@ -232,12 +256,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- PANNELLO ADMIN ---
     btnAdmin.addEventListener('click', () => {
-        adminOverlay.classList.remove('hidden');
+        openModal(adminOverlay);
         loadAdminUsers();
     });
 
     document.getElementById('btn-close-admin').addEventListener('click', () => {
-        adminOverlay.classList.add('hidden');
+        closeModal(adminOverlay);
     });
 
     async function loadAdminUsers() {
