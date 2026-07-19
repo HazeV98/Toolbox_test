@@ -288,8 +288,45 @@ body::after {
     padding: 1rem clamp(1rem, 2.2vw, 1.5rem) 2rem;
 }
 
+#view-home {
+    position: relative;
+    padding: 0.35rem 0.2rem 0.2rem;
+}
+
+#view-home::before {
+    content: "";
+    position: absolute;
+    inset: -0.35rem -0.2rem -0.2rem;
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.18)),
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.14), transparent 42%);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 20px 60px rgba(15, 23, 42, 0.06);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+[data-theme="dark"] #view-home::before {
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.56), rgba(30, 41, 59, 0.28)),
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.16), transparent 42%);
+    border-color: rgba(148, 163, 184, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 20px 60px rgba(2, 6, 23, 0.24);
+}
+
 .grid-container {
     gap: 1rem;
+    position: relative;
+}
+
+.grid-container > * {
+    position: relative;
+    z-index: 1;
 }
 
 .home-banner {
@@ -396,14 +433,23 @@ body::after {
 .module-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border-soft);
-    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, rgba(255,255,255,0.34), rgba(255,255,255,0.16));
     min-height: 150px;
     padding: 1.2rem 1rem;
     border-radius: 22px;
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255,255,255,0.55);
     animation: riseIn 0.6s ease both;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .module-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.34), rgba(30, 41, 59, 0.2));
+    border-color: rgba(148, 163, 184, 0.16);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.22), inset 0 1px 0 rgba(255,255,255,0.05);
+    color: var(--text-primary);
 }
 
 .module-card .icon-large {
@@ -412,10 +458,11 @@ body::after {
     width: 54px;
     height: 54px;
     border-radius: 16px;
-    background: rgba(37, 99, 235, 0.08);
+    background: rgba(255,255,255,0.24);
     color: var(--accent-color);
     font-size: 2rem;
     margin-bottom: 0.1rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 .module-card p {
@@ -574,28 +621,28 @@ body::after {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.2), transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.28), transparent 72%);
     transition: transform 0.25s ease;
 }
 
 .module-card:hover,
 .module-card:active {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.13);
-    border-color: rgba(37, 99, 235, 0.24);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+    border-color: rgba(255, 255, 255, 0.55);
 }
 
 .module-card:hover .icon-large,
 .module-card:active .icon-large {
-    transform: scale(1.06);
-    background: rgba(37, 99, 235, 0.14);
+    transform: scale(1.04);
+    background: rgba(255,255,255,0.3);
 }
 
 .module-card::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.24) 35%, transparent 65%);
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 35%, transparent 65%);
     transform: translateX(-150%) skewX(-18deg);
     transition: transform 0.75s ease;
     pointer-events: none;
@@ -640,7 +687,10 @@ body::after {
     border: none;
     box-shadow: none;
     backdrop-filter: none;
-    padding: 0.35rem;
+    padding: 0.4rem;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 999px;
 }
 
 .modal-header .icon-btn:hover {
@@ -658,8 +708,12 @@ body::after {
 }
 
 .modal-header {
-    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
-    margin-bottom: 1rem;
+    background: transparent;
+    border-bottom: none;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.2rem;
+    position: static;
+    top: auto;
 }
 
 .user-row {
